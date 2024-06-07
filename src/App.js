@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { CustomerForm } from "./component/CustomerForm";
+import { CustomerTable } from "./component/CustomerTable";
+import { useState } from "react";
 
-function App() {
+const App = () => {
+  const [list, setList] = useState([]);
+
+  const addUser = (userObj) => {
+    setList([...list, userObj]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container pt-4 ">
+        <h2 className="text-center pt-2 ">Customer List</h2>
+        <hr />
+        <h1 className="text-center pt-2"></h1>
+        <hr />
+        {/* form component */}
+        <CustomerForm addUser={addUser} />
+        {/* table component */}
+        <CustomerTable list={list} />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
